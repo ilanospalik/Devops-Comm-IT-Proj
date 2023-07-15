@@ -1,10 +1,13 @@
-AWS.config.region = 'us-west-2'; 
+var AWS = require('aws-sdk');
+var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+
+AWS.config.region = 'eu-west-1'; 
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'us-west-2:12345678-1234-1234-1234-123456789012',
+    IdentityPoolId: 'eu-west-1:62d020b6-bcdf-4448-a12d-f47cfa50f8c6',
 });
 var poolData = {
-    UserPoolId: 'us-west-2_uXboG5pAb',
-    ClientId: '25ddkmj4v6hfsfvruhpfi7n4hv' 
+    UserPoolId: 'eu-west-1_N570GMlUf',
+    ClientId: '4pcki2mor36gspo5j7oqukr60b' 
 };
 var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
