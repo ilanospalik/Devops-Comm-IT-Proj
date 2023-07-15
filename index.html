@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Comm-IT Project</title>
-    </head>
-    <body>
-        <h1>Hello!</h1>
-        <input id="username" type="text" placeholder="Username" />
-        <input id="password" type="password" placeholder="Password" />
-        <button onclick="login()">Log In</button>
-        <script src="app.js"></script>
-    </body>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Comm-IT Project</title>
+    <link rel="icon" type="image/png" href="/commit-logo.png"/>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Comm-IT Project</h1>
+    </header>
+
+    <main>
+        <form id="loginForm">
+            <fieldset>
+                <div>
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" placeholder="Username">
+                </div>
+                <div>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                </div>
+                <input type="submit" value="Submit">
+            </fieldset>
+        </form>
+        <h2 id="userDetails" class="hidden">user details</h2>
+        <div class="loader hidden" id="loader"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Moshe Dabush and Ilan Ospalik</p>
+    </footer>    
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.813.0.min.js"></script>
+    <script src="https://unpkg.com/amazon-cognito-identity-js@3.0.10/dist/amazon-cognito-identity.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
 </html>
