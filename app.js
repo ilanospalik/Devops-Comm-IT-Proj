@@ -40,24 +40,52 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         onSuccess: function (result) {
             const accessToken = result.getAccessToken().getJwtToken();
             const idToken = result.getIdToken().getJwtToken();
-
+            const userName = result.getIdToken().payload["cognito:username"];
+            // console.log(username)
+            // console.log(result)
             console.log('Access Token: ' + accessToken);
+            // console.log('Id Token: ' + idToken);
+            // const signinTime = new Date().toISOString();
+
+            // // DynamoDB configuration
+            // const dynamoDb = new AWS.DynamoDB.DocumentClient();
+    
+            // const params = {
+            //     TableName: 'UsersSigninData', // Table name
+            //     Item: {
+            //         'Username': userName, // Partition key
+            //         'SigninTime': signinTime, // Sort key
+            //         // other attributes you want to save for this user
+            //     }
+            // };
+    
+            // // Call DynamoDB to add the item to the table
+            // dynamoDb.put(params, function(err, data) {
+            //     if (err) {
+            //         console.log("Error", err);
+            //     } else {
+            //         console.log("Success", data);
+            //     }
+            // });
 
             fetch('https://amfgw0gmwh.execute-api.eu-west-1.amazonaws.com/project/', {
                 method: 'GET',
                 headers: {
+                    // 'Authorization': 'Bearer' + accessToken
                     'Authorization': 'Bearer ' + idToken
                 }
             }).then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
+                // return console.log(event);
                 return response.json();
             }).then(data => {
                 loader.classList.add('hidden');
                 const userDetails = document.getElementById('userDetails');
                 userDetails.classList.remove('hidden');
-                userDetails.textContent = data.body;
+                // userDetails.textContent = console.log(data);
+                userDetails.textContent = data;
                 // handle your data
             }).catch(error => {
                 loader.classList.add('hidden');
