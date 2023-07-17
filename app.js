@@ -44,7 +44,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             // console.log(username)
             // console.log(result)
             console.log('Access Token: ' + accessToken);
-            // console.log('Id Token: ' + idToken);
+            console.log('Id Token: ' + idToken);
             // const signinTime = new Date().toISOString();
 
             // // DynamoDB configuration
@@ -73,6 +73,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
                 headers: {
                     // 'Authorization': 'Bearer' + accessToken
                     'Authorization': 'Bearer ' + idToken
+                    // 'Username': userName
                 }
             }).then(response => {
                 if (!response.ok) {
