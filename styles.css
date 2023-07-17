@@ -105,3 +105,10 @@ footer {
         transform: rotate(360deg);
     }
 }
+
+#errorMessage {
+    color: red;
+    position: fixed;
+    z-index: 9999;
+    padding: 10px;
+}
