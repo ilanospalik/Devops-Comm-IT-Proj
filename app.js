@@ -24,7 +24,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const errorMessage = document.getElementById('errorMessage');
+    const message = document.getElementById('message');
 
     const authenticationData = {
         Username: username,
@@ -44,7 +44,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         onSuccess: function (result) {
             const accessToken = result.getAccessToken().getJwtToken();
             const idToken = result.getIdToken().getJwtToken();
-            errorMessage.textContent = '';  // Clear the error message on successful login
+            message.textContent = '';  // Clear the error message on successful login
 
             fetch('https://amfgw0gmwh.execute-api.eu-west-1.amazonaws.com/project/', {
                 method: 'GET',
@@ -53,7 +53,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
                 }
             }).then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    message.textContent = 'Network response was not ok';
                 }
                 return response.json();
             }).then(data => {
@@ -66,23 +66,23 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             }).catch(error => {
                 loader.classList.add('hidden');
                 loginForm.classList.remove('hidden');
-                errorMessage.textContent = 'There has been a problem with your fetch operation: ' + error.message;
+                message.textContent = 'There has been a problem with your fetch operation: ' + error.message;
             });
         },
 
         onFailure: function (err) {
             loginForm.classList.remove('hidden');
+            signUp.classList.remove('hidden');
             loader.classList.add('hidden');
-            errorMessage.textContent = err.message || JSON.stringify(err);
+            message.textContent = err.message || JSON.stringify(err);
         },
     });
 
-    // Clear error message when user inputs
     document.getElementById('username').addEventListener('input', function () {
-        errorMessage.textContent = '';
+        message.textContent = '';
     });
     document.getElementById('password').addEventListener('input', function () {
-        errorMessage.textContent = '';
+        message.textContent = '';
     });
 });
 
@@ -112,11 +112,20 @@ document.getElementById('signupForm').addEventListener('submit', function (event
 
     userPool.signUp(username, password, attributeList, null, function (err, result) {
         if (err) {
-            alert(err.message || JSON.stringify(err));
+            message.textContent = err.message || JSON.stringify(err);
             return;
         }
         var cognitoUser = result.user;
-        console.log('user name is ' + cognitoUser.getUsername());
+        message.textContent = cognitoUser.getUsername() + ' Confirm Your Account In Your Email, Then log In!';
+    });
+    document.getElementById('signupUsername').addEventListener('input', function () {
+        message.textContent = '';
+    });
+    document.getElementById('signupPassword').addEventListener('input', function () {
+        message.textContent = '';
+    });
+    document.getElementById('signupEmail').addEventListener('input', function () {
+        message.textContent = '';
     });
 });
 

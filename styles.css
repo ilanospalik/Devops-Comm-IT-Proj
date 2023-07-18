@@ -5,6 +5,13 @@ body {
     height: 100vh;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    /* text-align: center; */
+}
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 form {
@@ -22,7 +29,8 @@ h1 {
 }
 
 input[type=text],
-input[type=password] {
+input[type=password],
+input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -106,9 +114,38 @@ footer {
     }
 }
 
-#errorMessage {
+#message {
     color: red;
-    position: fixed;
+    /* position: fixed; */
     z-index: 9999;
     padding: 10px;
+    text-align: center;
+    width: 70%;
 }
+
+#loginButton {
+    background-color: #1498fd;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    /* width: 50%; */
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+  
+  #signUpButton {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    /* width: 50%; */
+    margin-bottom: 10px;
+    opacity: 0.9;
+  }
+  
+  #loginButton:hover, #signUpButton:hover {
+    opacity: 1;
+  }
+  
