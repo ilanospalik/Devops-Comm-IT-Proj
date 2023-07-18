@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Comm-IT Project</title>
-    <link rel="icon" type="image/png" href="/commit-logo.png"/>
+    <link rel="icon" type="image/png" href="/commit-logo.png" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 
@@ -25,17 +25,36 @@
                     <label for="password">Password:</label><br>
                     <input type="password" id="password" name="password" placeholder="Password">
                 </div>
-                <input type="submit" value="Submit">
+                <input type="submit" value="Log In">
+            </fieldset>
+        </form>
+        <form id="signupForm" class="hidden">
+            <fieldset>
+                <div>
+                    <label for="signupUsername">Username:</label><br>
+                    <input type="text" id="signupUsername" name="signupUsername" placeholder="Username">
+                </div>
+                <div>
+                    <label for="signupPassword">Password:</label><br>
+                    <input type="password" id="signupPassword" name="signupPassword" placeholder="Password">
+                </div>
+                <div>
+                    <label for="signupEmail">Email:</label><br>
+                    <input type="email" id="signupEmail" name="signupEmail" placeholder="Email">
+                </div>
+                <input type="submit" value="Sign Up">
             </fieldset>
         </form>
         <h2 id="userDetails" class="hidden">user details</h2>
+        <button id="loginButton" class="hidden">Log In</button>
+        <button id="signUpButton">Sign Up</button>
         <div id="errorMessage"></div>
         <div class="loader hidden" id="loader"></div>
     </main>
 
     <footer>
         <p>&copy; 2023 Moshe Dabush and Ilan Ospalik</p>
-    </footer>    
+    </footer>
 
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.813.0.min.js"></script>
     <script src="https://unpkg.com/amazon-cognito-identity-js@3.0.10/dist/amazon-cognito-identity.min.js"></script>
