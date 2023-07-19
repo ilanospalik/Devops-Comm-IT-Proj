@@ -103,7 +103,7 @@ document.getElementById('signupForm').addEventListener('submit', function (event
 
     var dataEmail = {
         Name: 'email',
-        Value: email, // use the email value from the form
+        Value: email,
     };
 
     var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
