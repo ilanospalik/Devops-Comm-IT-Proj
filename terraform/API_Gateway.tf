@@ -12,7 +12,7 @@ resource "aws_api_gateway_rest_api" "App_API" {
             httpMethod           = "GET"
             payloadFormatVersion = "1.0"
             type                 = "LAMBDA"
-            LambdaRegion         = "eu-north-1"
+            LambdaRegion         = "eu-west-1"
             LambdaFunction       = "from_parameter_store"
           }
         }

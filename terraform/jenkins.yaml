@@ -1,0 +1,9 @@
+---
+- name: Install Jenkins on EC2
+  hosts: all
+  remote_user: ubuntu
+  become: true
+
+  roles:
+  - docker
+  - jenkins
