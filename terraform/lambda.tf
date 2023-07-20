@@ -42,11 +42,11 @@ resource "aws_iam_policy" "lambda_policy" {
 EOF
 }
 
-# resource "aws_iam_policy_attachment" "lambda_policy_attachment" {
-#   name       = "lambda-policy-attachment"
-#   roles      = [aws_iam_role.lambda_role.name]
-#   policy_arn = aws_iam_policy.lambda_policy.arn
-# }
+resource "aws_iam_policy_attachment" "lambda_policy_attachment" {
+  name       = "lambda-policy-attachment"
+  roles      = [aws_iam_role.lambda_role.name]
+  policy_arn = aws_iam_policy.lambda_policy.arn
+}
 
 resource "aws_lambda_function" "my_lambda_function" {
   function_name    = "token-dynamodb-parameter"
@@ -56,11 +56,13 @@ resource "aws_lambda_function" "my_lambda_function" {
   timeout          = 10
   memory_size      = 128
   # Uncomment the following two lines and provide the appropriate values
-  s3_bucket        = "moshedabush-devops"
+  # s3_bucket        = "moshedabush-devops"
+  s3_bucket        = "commit-project"
   s3_key           = "lambda_function.zip"
 
   layers = [
-    "arn:aws:lambda:eu-west-1:169244118978:layer:jwt:3"
+    "arn:aws:lambda:eu-west-2:169244118978:layer:jwt:1"
+    # "arn:aws:lambda:eu-west-1:169244118978:layer:jwt:3"
   ]
 }
 
