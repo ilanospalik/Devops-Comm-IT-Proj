@@ -42,11 +42,11 @@ resource "aws_iam_policy" "lambda_policy" {
 EOF
 }
 
-resource "aws_iam_policy_attachment" "lambda_policy_attachment" {
-  name       = "lambda-policy-attachment"
-  roles      = [aws_iam_role.lambda_role.name]
-  policy_arn = aws_iam_policy.lambda_policy.arn
-}
+# resource "aws_iam_policy_attachment" "lambda_policy_attachment" {
+#   name       = "lambda-policy-attachment"
+#   roles      = [aws_iam_role.lambda_role.name]
+#   policy_arn = aws_iam_policy.lambda_policy.arn
+# }
 
 resource "aws_lambda_function" "my_lambda_function" {
   function_name    = "token-dynamodb-parameter"
