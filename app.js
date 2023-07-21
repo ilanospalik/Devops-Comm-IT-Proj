@@ -1,11 +1,11 @@
-AWS.config.region = 'eu-west-1';
+AWS.config.region = 'eu-west-2';
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'eu-west-1:62d020b6-bcdf-4448-a12d-f47cfa50f8c6',
+    IdentityPoolId: 'eu-west-2:52220ee4-a296-40ef-b192-f3b89772eb6f',
 });
 
 const poolData = {
-    UserPoolId: 'eu-west-1_N570GMlUf',
-    ClientId: '4pcki2mor36gspo5j7oqukr60b'
+    UserPoolId: 'eu-west-2_Y4UQrvSCp',
+    ClientId: '7lquekgu06k4ve6fjvj3u2ikv1'
 };
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -15,13 +15,10 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
     const loginForm = document.getElementById('loginForm');
     loginForm.classList.add('hidden');
-
     const loader = document.getElementById('loader');
     loader.classList.remove('hidden');
-
     const signUp = document.getElementById('signUpButton');
     signUp.classList.add('hidden');
-
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const message = document.getElementById('message');
@@ -46,7 +43,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             const idToken = result.getIdToken().getJwtToken();
             message.textContent = '';  // Clear the error message on successful login
 
-            fetch('https://amfgw0gmwh.execute-api.eu-west-1.amazonaws.com/project/', {
+            fetch('https://pct8v241xl.execute-api.eu-west-2.amazonaws.com/Dev/root', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + idToken
@@ -92,22 +89,14 @@ document.getElementById('signupForm').addEventListener('submit', function (event
     const username = document.getElementById('signupUsername').value;
     const password = document.getElementById('signupPassword').value;
     const email = document.getElementById('signupEmail').value;
-
-    var poolData = {
-        UserPoolId: 'eu-west-1_N570GMlUf',
-        ClientId: '4pcki2mor36gspo5j7oqukr60b'
-    };
     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-
     var attributeList = [];
-
     var dataEmail = {
         Name: 'email',
         Value: email,
     };
 
     var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
-
     attributeList.push(attributeEmail);
 
     userPool.signUp(username, password, attributeList, null, function (err, result) {
