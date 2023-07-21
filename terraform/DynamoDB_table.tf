@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "UsersSigninData" {
-  name           = "UsersSigninData2"
+  name           = "UsersSigninData"
   read_capacity  = 1  // update as per your requirement
   write_capacity = 1  // update as per your requirement
   hash_key       = "Username"
