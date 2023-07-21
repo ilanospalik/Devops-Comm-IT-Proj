@@ -1,11 +1,11 @@
 AWS.config.region = 'eu-west-2';
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'eu-west-2:52220ee4-a296-40ef-b192-f3b89772eb6f',
+    IdentityPoolId: 'eu-west-1:62d020b6-bcdf-4448-a12d-f47cfa50f8c6',
 });
 
 const poolData = {
-    UserPoolId: 'eu-west-2_Y4UQrvSCp',
-    ClientId: '7lquekgu06k4ve6fjvj3u2ikv1'
+    UserPoolId: 'eu-west-1_N570GMlUf',
+    ClientId: '4pcki2mor36gspo5j7oqukr60b'
 };
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -42,8 +42,8 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             const accessToken = result.getAccessToken().getJwtToken();
             const idToken = result.getIdToken().getJwtToken();
             message.textContent = '';  // Clear the error message on successful login
-
-            fetch('https://pct8v241xl.execute-api.eu-west-2.amazonaws.com/Dev/root', {
+            console.log(idToken)
+            fetch('https://amfgw0gmwh.execute-api.eu-west-1.amazonaws.com/project', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + idToken
@@ -63,6 +63,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             }).catch(error => {
                 loader.classList.add('hidden');
                 loginForm.classList.remove('hidden');
+                signUp.classList.remove('hidden');
                 message.textContent = 'There has been a problem with your fetch operation: ' + error.message;
             });
         },
