@@ -16,18 +16,18 @@ resource "aws_cognito_user_pool" "user_pool" {
     email_message_by_link = "For confirmation {##Click Here##}"
   }
 
-  # schema {
-  #   attribute_data_type      = "String"
-  #   developer_only_attribute = false
-  #   mutable                  = true
-  #   name                     = "email"
-  #   required                 = true
+  schema {
+    attribute_data_type      = "String"
+    developer_only_attribute = false
+    mutable                  = true
+    name                     = "email"
+    required                 = true
 
-  #   string_attribute_constraints {
-  #     min_length = 1
-  #     max_length = 256
-  #   }
-  # }
+    string_attribute_constraints {
+      min_length = 1
+      max_length = 256
+    }
+  }
 }
 
 resource "aws_cognito_user_pool_client" "client" {
