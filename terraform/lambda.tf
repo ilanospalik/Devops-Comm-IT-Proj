@@ -57,12 +57,14 @@ resource "aws_lambda_function" "my_lambda_function" {
   memory_size      = 128
   # Uncomment the following two lines and provide the appropriate values
   # s3_bucket        = "moshedabush-devops"
-  s3_bucket        = "commit-project"
+  s3_bucket        = "commit-project-ilan-and-moshe"
   s3_key           = "lambda_function.zip"
 
   layers = [
-    "arn:aws:lambda:eu-west-2:169244118978:layer:jwt:1"
+    "arn:aws:lambda:eu-central-1:164980749225:layer:jwt:2"
     # "arn:aws:lambda:eu-west-1:169244118978:layer:jwt:3"
   ]
 }
+
+
 

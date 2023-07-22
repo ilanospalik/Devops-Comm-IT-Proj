@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "commit_project" {
-  bucket = "commit-project"
+  bucket = "commit-project-ilan-and-moshe"
 
   tags = {
     Name = "project bucket"

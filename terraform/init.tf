@@ -6,15 +6,15 @@ terraform {
       version = "5.6.2"
     }
     }
-    backend "s3" {
-      bucket = "moshedabush-devops"
-      key    = "aws-bucket-demo1.tfstate"
-      region = "eu-west-1"
-  }
+  #   backend "s3" {
+  #     bucket = "moshedabush-devops"
+  #     key    = "aws-bucket-demo1.tfstate"
+  #     region = "eu-west-1"
+  # }
 }
 # Provider Block
 provider "aws" {
-  region = "eu-west-2"
+  region = "eu-central-1"
 }
 
 
