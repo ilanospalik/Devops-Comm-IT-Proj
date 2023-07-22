@@ -42,7 +42,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             const accessToken = result.getAccessToken().getJwtToken();
             const idToken = result.getIdToken().getJwtToken();
             message.textContent = '';  // Clear the error message on successful login
-            console.log(idToken)
+            
             fetch('https://amfgw0gmwh.execute-api.eu-west-1.amazonaws.com/project', {
                 method: 'GET',
                 headers: {
@@ -106,7 +106,7 @@ document.getElementById('signupForm').addEventListener('submit', function (event
             return;
         }
         var cognitoUser = result.user;
-        message.textContent = cognitoUser.getUsername() + ' Confirm Your Account In Your Email, Then log In!';
+        message.textContent = cognitoUser.getUsername() + ' Please verify your account via the confirmation email, and then proceed to log in.';
     });
     document.getElementById('signupUsername').addEventListener('input', function () {
         message.textContent = '';
