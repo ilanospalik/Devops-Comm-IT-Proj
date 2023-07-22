@@ -43,7 +43,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             const idToken = result.getIdToken().getJwtToken();
             message.textContent = '';  // Clear the error message on successful login
             
-            fetch('https://qadnnxxbvh.execute-api.eu-central-1.amazonaws.com/Dev/root', {
+            fetch('https://qadnnxxbvh.execute-api.eu-central-1.amazonaws.com/Dev', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + idToken
