@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "assume_unauthenticated_role" {
       variable = "cognito-identity.amazonaws.com:aud"
     }
     condition {
-      test     = "ForAnyValue:StringLike"
+      test     = "ForAnyValue:StringEquals"
       values   = ["unauthenticated"]
       variable = "cognito-identity.amazonaws.com:amr"
     }
@@ -66,7 +66,7 @@ data "aws_iam_policy_document" "assume_authenticated_role" {
       variable = "cognito-identity.amazonaws.com:aud"
     }
     condition {
-      test     = "ForAnyValue:StringLike"
+      test     = "ForAnyValue:StringEquals"
       values   = ["authenticated"]
       variable = "cognito-identity.amazonaws.com:amr"
     }

@@ -3,5 +3,3 @@
 /terraform/.terraform.lock.hcl
 /terraform/terraform.tfstate.backup
 /terraform/terraform.tfstate
-/python2.zip
-/lambda_function.zip
