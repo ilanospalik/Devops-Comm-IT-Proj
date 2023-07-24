@@ -30,6 +30,10 @@ resource "aws_cognito_user_pool" "user_pool" {
   }
 }
 
+output "cognito_user_pool_id" {
+  value = aws_cognito_user_pool.user_pool.id
+}
+
 resource "aws_cognito_user_pool_client" "client" {
   name                                 = "commit-project"
   user_pool_id                         = aws_cognito_user_pool.user_pool.id
@@ -50,7 +54,11 @@ resource "aws_cognito_user_pool_client" "client" {
   ]
 }
 
+output "cognito_user_pool_client_id" {
+  value = aws_cognito_user_pool_client.client.id
+}
+
 resource "aws_cognito_user_pool_domain" "cognito-domain" {
-  domain       = "commit-project1"
+  domain       = "commit-project2"
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }

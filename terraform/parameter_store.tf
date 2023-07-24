@@ -1,7 +1,7 @@
 variable "parameters" {
   description = "List of parameters to create in AWS Parameter Store"
   type        = list(string)
-  default     = ["Hello", "HEY", "Hi"]  # my parameter names
+  default     = ["Hello", "Hey", "Hi"]  # my parameter names
 }
 
 resource "aws_ssm_parameter" "project_parameter" {

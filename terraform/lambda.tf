@@ -16,7 +16,7 @@ resource "aws_iam_role" "lambda_role" {
 }
 EOF
 }
-##NEED TO GIVE LESS RESOURCE
+
 resource "aws_iam_policy" "lambda_policy" {
   name = "lambda-policy"
   policy = <<EOF
@@ -29,11 +29,16 @@ resource "aws_iam_policy" "lambda_policy" {
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents",
-        "s3:GetObject",
         "dynamodb:PutItem",
         "ssm:GetParameter",
         "ssm:GetParameters",
-        "ssm:DescribeParameters"
+        "ssm:DescribeParameters",
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:PutObjectAcl",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionAcl",
+        "s3:PutObjectVersionTagging"
       ],
       "Resource": "*"
     }
@@ -48,6 +53,13 @@ resource "aws_iam_policy_attachment" "lambda_policy_attachment" {
   policy_arn = aws_iam_policy.lambda_policy.arn
 }
 
+resource "aws_s3_object" "object" {
+  bucket = "commit-project-ilan-moshe"
+  key    = "lambda_function.zip"
+  source = "lambda_function.zip"
+  depends_on = [aws_s3_bucket.commit_project]
+}
+
 resource "aws_lambda_function" "my_lambda_function" {
   function_name    = "token-dynamodb-parameter"
   role             = aws_iam_role.lambda_role.arn
@@ -55,14 +67,26 @@ resource "aws_lambda_function" "my_lambda_function" {
   runtime          = "python3.10"
   timeout          = 10
   memory_size      = 128
-  # Uncomment the following two lines and provide the appropriate values
-  # s3_bucket        = "moshedabush-devops"
-  s3_bucket        = "commit-project"
+  s3_bucket        = "commit-project-ilan-moshe"
   s3_key           = "lambda_function.zip"
 
+  environment {
+    variables = {
+      BUCKET_NAME = aws_s3_bucket.commit_project.bucket
+    }
+  }
+
   layers = [
-    "arn:aws:lambda:eu-west-2:169244118978:layer:jwt:1"
-    # "arn:aws:lambda:eu-west-1:169244118978:layer:jwt:3"
+    aws_lambda_layer_version.jwt.arn,
   ]
+  depends_on = [aws_s3_object.object, aws_lambda_layer_version.jwt]
 }
+
+resource "aws_lambda_layer_version" "jwt" {
+  filename   = "python.zip"
+  layer_name = "jwt"
+  compatible_runtimes = ["python3.10", "python3.9", "python3.8", "python3.7"]
+  compatible_architectures = ["x86_64", "arm64"]
+}
+
 

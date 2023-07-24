@@ -9,6 +9,10 @@ resource "aws_cognito_identity_pool" "main" {
   }
 }
 
+output "cognito_identity_pool_id" {
+  value = aws_cognito_identity_pool.main.id
+}
+
 resource "aws_iam_role" "authenticated" {
   name               = "${local.name_prefix}AuthenticatedAssumeRole"
   assume_role_policy = data.aws_iam_policy_document.assume_authenticated_role.json

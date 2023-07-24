@@ -1,14 +1,15 @@
 AWS.config.region = 'eu-west-2';
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: 'eu-west-1:62d020b6-bcdf-4448-a12d-f47cfa50f8c6',
+    IdentityPoolId: 'eu-west-2:6ee1d930-26de-492a-aac2-d91eb70be0cb',
 });
 
 const poolData = {
-    UserPoolId: 'eu-west-1_N570GMlUf',
-    ClientId: '4pcki2mor36gspo5j7oqukr60b'
+    UserPoolId: 'eu-west-2_LyS14WwyJ',
+    ClientId: '4b50kvgh8qlv479ntpnosteuhi'
 };
 
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+const message = document.getElementById('message');
 
 document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -21,7 +22,6 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
     signUp.classList.add('hidden');
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const message = document.getElementById('message');
 
     const authenticationData = {
         Username: username,
@@ -42,8 +42,8 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
             const accessToken = result.getAccessToken().getJwtToken();
             const idToken = result.getIdToken().getJwtToken();
             message.textContent = '';  // Clear the error message on successful login
-            
-            fetch('https://amfgw0gmwh.execute-api.eu-west-1.amazonaws.com/project', {
+
+            fetch('https://m2oyqh55d4.execute-api.eu-west-2.amazonaws.com/Dev', {
                 method: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + idToken
@@ -120,6 +120,7 @@ document.getElementById('signupForm').addEventListener('submit', function (event
 });
 
 document.getElementById('signUpButton').addEventListener('click', function () {
+    message.textContent = '';
     document.getElementById('signUpButton').style.display = 'none';
     document.getElementById('signupForm').style.display = 'block';
     document.getElementById('loginForm').style.display = 'none';
@@ -127,6 +128,7 @@ document.getElementById('signUpButton').addEventListener('click', function () {
 });
 
 document.getElementById('loginButton').addEventListener('click', function () {
+    message.textContent = '';
     document.getElementById('loginForm').style.display = 'block';
     document.getElementById('signupForm').style.display = 'none';
     document.getElementById('signUpButton').style.display = 'block';

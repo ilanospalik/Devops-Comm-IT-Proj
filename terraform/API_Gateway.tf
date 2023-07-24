@@ -128,8 +128,6 @@ resource "aws_api_gateway_integration_response" "get" {
   }
 }
 
-
-
 resource "aws_lambda_permission" "get" {
   depends_on     = [aws_lambda_function.my_lambda_function]
   statement_id   = "AllowExecutionFromAPIGateway"
@@ -162,6 +160,9 @@ resource "aws_api_gateway_stage" "get" {
   stage_name    = "Dev"
 }
 
+output "api_gateway_stage_url" {
+  value = aws_api_gateway_stage.get.invoke_url
+}
 
 resource "aws_lambda_permission" "api_gateway_cors_permission" {
   statement_id  = "AllowExecutionFromAPIGatewayForCORS"

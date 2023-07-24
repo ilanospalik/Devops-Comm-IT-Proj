@@ -5,7 +5,7 @@ body {
     height: 100vh;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    /* text-align: center; */
+    overflow-y: hidden;
 }
 
 main {
@@ -123,6 +123,7 @@ footer {
 }
 
 #loginButton {
+    margin-block-start: 1vh;
     background-color: #1498fd;
     color: white;
     padding: 14px 20px;
@@ -133,6 +134,7 @@ footer {
   }
   
   #signUpButton {
+    margin-block-start: 1vh;
     background-color: #f44336;
     color: white;
     padding: 14px 20px;
